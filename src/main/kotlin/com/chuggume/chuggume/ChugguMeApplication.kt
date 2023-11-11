@@ -15,12 +15,11 @@ class ChugguMeApplication(
     private val log = logger()
 
     override fun run(vararg args: String?) {
-        log.info("hello world!")
         menuGateWay(args)
-        log.info("hello world!")
     }
 
     fun menuGateWay(args: Array<out String?> ){
+        if(args.size < 1 ) println()
         when(args[0]){
             "player" -> playerService.service()
         }
