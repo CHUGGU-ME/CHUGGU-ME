@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### LOG FILE ###
+LOG_FILE_IS_UNDEFINED*.*
+LOG_FILE_IS_UNDEFINED

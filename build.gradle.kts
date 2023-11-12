@@ -24,7 +24,7 @@ extra["springCloudVersion"] = "2021.0.8"
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("com.microsoft.playwright:playwright:1.28.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
