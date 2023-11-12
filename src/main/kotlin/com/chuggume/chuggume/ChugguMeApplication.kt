@@ -19,9 +19,9 @@ class ChugguMeApplication(
     }
 
     fun menuGateWay(args: Array<out String?> ){
-        if(args.size < 1 ) println()
+        if(args.size < 1 ) println("no args")
         when(args[0]){
-            "player" -> playerService.service()
+            "player" -> playerService.service(args)
         }
     }
 }
