@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class Config {
 
-
     @Bean
     fun playWright(): Playwright = Playwright.create()
 
@@ -17,6 +16,7 @@ class Config {
         .launch(
             BrowserType
                 .LaunchOptions()
+                .setHeadless(false)
         )
 
     @Bean
