@@ -32,7 +32,7 @@ dependencies {
 //    implementation("io.github.resilience4j:resilience4j-spring-boot3:2.0.2")
 //    implementation("io.github.resilience4j:resilience4j-all:2.0.2")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    runtimeOnly("com.h2database:h2")
+    implementation("com.microsoft.playwright:playwright:1.28.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("io.github.microutils:kotlin-logging:3.0.5")
 }

@@ -1,5 +1,7 @@
 package com.chuggume.chuggume
 
+
+import com.chuggume.chuggume.service.MomService
 import com.chuggume.chuggume.service.PlayerService
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -12,12 +14,13 @@ inline fun <reified T> T.logger() = LoggerFactory.getLogger(T::class.java)!!
 class ChugguMeApplication(
     private val playerService: PlayerService,
     private val getInfoByApiService: GetInfoByApiService
+    private val momService: MomService
 
 ) : CommandLineRunner{
     private val log = logger()
 
     override fun run(vararg args: String?) {
-        log.info("hello world!")
+
         menuGateWay(args)
         log.info("hello world!")
 //        val command = "Countries"
@@ -27,9 +30,13 @@ class ChugguMeApplication(
     }
 
     fun menuGateWay(args: Array<out String?> ){
-        if(args.size < 1) return
+        if(args.size < 1 ) println("no args")
         when(args[0]){
-            "player" -> playerService.service()
+            "player" -> playerService.service(args)
+            "goal" -> playerService.goal()
+            "news" -> playerService.news()
+            "article" -> playerService.newsSelect()
+            "mom" -> momService.service()
         }
     }
 }

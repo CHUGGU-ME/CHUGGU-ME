@@ -11,7 +11,7 @@ class GetInfoByApiService(
 ) {
     val logger = logger {}
 
-//    @CircuitBreaker(name = "", fallbackMethod = "fallbackGetEplInfo")
+    @CircuitBreaker(name = "", fallbackMethod = "fallbackGetEplInfo")
     fun getEplInfo(command: String,
                    arg: String?): EplInfoResponse {
 //        val command = "Countries"
