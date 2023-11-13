@@ -1,18 +1,31 @@
 package com.chuggume.chuggume.config
 
+import com.microsoft.playwright.*
+
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 class Config {
-    val ALL_SPORTS_API_BASE_URI: String = "https://apiv2.allsportsapi.com";
+
+
 
     @Bean
-    fun webClient(builder: WebClient.Builder): WebClient =
-        builder
-            .baseUrl(ALL_SPORTS_API_BASE_URI)
-            .codecs { configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 *1024) }
-            .build()
+    fun playWright(): Playwright = Playwright.create()
+
+    @Bean
+    fun browser(playwright: Playwright): Browser = playwright
+        .chromium()
+        .launch(
+            BrowserType
+                .LaunchOptions()
+        )
+
+    @Bean
+    fun browserContext(browser: Browser): BrowserContext = browser.newContext()
+
+    @Bean
+    fun page(browserContext: BrowserContext): Page = browserContext.newPage()
 
 }
