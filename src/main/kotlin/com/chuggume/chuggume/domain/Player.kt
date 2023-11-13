@@ -11,6 +11,8 @@ data class Player(
     val nationality: String,
     val dateOfBirth: String,
     val height: String,
+    val score: String,
+    val assist: String,
 ){
     companion object{
         fun of(playerPageMainContent: ElementHandle): Player{
@@ -23,7 +25,9 @@ data class Player(
                 nationality = playerPageMainContent.querySelector(".player-info__player-country").innerText(),
                 dateOfBirth = playerPageMainContent.querySelector("div.wrapper.hasFixedSidebar > div > div > div.player-info.u-hide-mob > section > div > div:nth-child(2) > div.player-info__info").innerText(),
                 height = playerPageMainContent.querySelector("div.wrapper.hasFixedSidebar > div > div > div.player-info.u-hide-mob > section > div > div:nth-child(3) > div.player-info__info").innerText(),
-            )
+                score = playerPageMainContent.querySelector("div.wrapper.hasFixedSidebar > nav > div > section:nth-child(2) > div > div:nth-child(2) > div.player-overview__info").innerText(),
+                assist = playerPageMainContent.querySelector("div.wrapper.hasFixedSidebar > nav > div > section:nth-child(2) > div > div:nth-child(3) > div.player-overview__info").innerText(),
+                )
         }
     }
 
@@ -36,6 +40,8 @@ data class Player(
         sb.append("height: ${height}\n")
         sb.append("date of birth: ${dateOfBirth}\n")
         sb.append("nationality: ${nationality}\n")
+        sb.append("score: ${score}\n")
+        sb.append("assist: ${assist}\n")
         return sb.toString()
     }
 }
