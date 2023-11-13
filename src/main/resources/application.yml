@@ -1,0 +1,90 @@
+spring.main.web-application-type:
+  none
+spring:
+  profiles:
+    active: dev
+  boot:
+    admin:
+      server:
+        base-path: /applications
+
+#  datasource:
+#    #    로컬 docker의 MySQL과 연동
+#    url: jdbc:mysql://localhost:3306/katj?zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: qpflqpfl95!
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+  ##    aws RDS와 연동
+  #    url: jdbc:mysql://katj-db.clwqjlzrayle.ap-northeast-2.rds.amazonaws.com:3306/katj
+  #    username: katj
+  #    password: katj123!
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  jpa:
+    database: h2
+#    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      circuitbreakers:
+        enabled: true # circuitbreakers 정보 노출
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    circuitbreakers:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        resilience4j.circuitbreaker.calls: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#  config:
+#    classpath: logback-spring.xml
+
+server:
+  port: 8080
+
+#resilience4j:
+#  circuitbreaker:
+#    circuitBreakerAspectOrder: 1
+#    configs:
+#      default:
+#        registerHealthIndicator: true # actuator 정보 노출을 위한 설정
+#        minimumNumberOfCalls: 3 # 닫힌 상태에서의 호출 수로, 서킷을 열어야 할지 결정할 때 사용
+#        permittedNumberOfCallsInHalfOpenState: 10 # 반열림 상태에서의 호출 수로, 서킷을 다시 열거나 닫힘 상태로 돌아갈 지 결정할 때 사용
+#        failureRateThreshold: 20 # 실패한 호출에 대한 임계값(백분율)으로 이 값을 초과하면 서킷이 열림
+#        waitDurationInOpenState: 10s # 열림 상태를 유지하는 시간, 해당 시간 이후 반열림 상태로 변경
+#        slidingWindowType: COUNT_BASED
+#        slidingWindowSize: 50 # 통계 큐 사이즈
+#        automaticTransitionFromOpenToHalfOpenEnabled: false # half-open 자동 변환
+#        slowCallRateThreshold: 20
+#        slowCallDurationThreshold: 5s #5s
+#  #    instances:
+#  #      addRouteHistory:
+#  #        baseConfig: default
+#  retry:
+#    retryAspectOrder: 2
+#    configs:
+#      default:
+#        maxAttempts: 3
+#        waitDuration: 500ms
+#  timelimiter:
+#    configs:
+#      default:
+#        timeoutDuration: 6s # slowCallDurationThreshold보다는 크게 설정되어야 함
+#        cancelRunningFuture: true

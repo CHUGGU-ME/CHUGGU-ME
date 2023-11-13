@@ -10,7 +10,9 @@ inline fun <reified T> T.logger() = LoggerFactory.getLogger(T::class.java)!!
 
 @SpringBootApplication
 class ChugguMeApplication(
-    private val playerService: PlayerService
+    private val playerService: PlayerService,
+    private val getInfoByApiService: GetInfoByApiService
+
 ) : CommandLineRunner{
     private val log = logger()
 
@@ -18,9 +20,14 @@ class ChugguMeApplication(
         log.info("hello world!")
         menuGateWay(args)
         log.info("hello world!")
+//        val command = "Countries"
+//        val arg = ""
+//        val result = getInfoByApiService.getEplInfo(command, arg)
+//        println(result)
     }
 
     fun menuGateWay(args: Array<out String?> ){
+        if(args.size < 1) return
         when(args[0]){
             "player" -> playerService.service()
         }
