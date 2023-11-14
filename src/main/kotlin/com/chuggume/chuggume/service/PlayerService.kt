@@ -1,7 +1,6 @@
 package com.chuggume.chuggume.service
 
 import com.chuggume.chuggume.domain.Player
-import com.microsoft.playwright.Browser
 import com.microsoft.playwright.ElementHandle
 import com.microsoft.playwright.Page
 import com.microsoft.playwright.options.LoadState
