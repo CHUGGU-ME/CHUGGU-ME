@@ -4,10 +4,9 @@ import com.chuggume.chuggume.domain.Player
 import com.microsoft.playwright.ElementHandle
 import com.microsoft.playwright.Page
 import com.microsoft.playwright.options.LoadState
-import org.springframework.stereotype.Service
 
 
-@Service
+
 class PlayerService(
     val page: Page,
 ) {
