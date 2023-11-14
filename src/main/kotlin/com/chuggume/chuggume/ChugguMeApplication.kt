@@ -21,17 +21,13 @@ class ChugguMeApplication(
     }
 
     fun menuGateWay(args: Array<out String?> ){
-        val startTime = System.currentTimeMillis()
         if(args.size < 1 ) println("no args")
         when(args[0]){
             "player" -> playerService.service(args)
-            "goal" -> newsService.goal()
-            "news" -> newsService.news()
-            "article" -> newsService.newsSelect()
+            "goal" -> playerService.goal()
+            "news" -> playerService.news()
+            "article" -> playerService.newsSelect()
         }
-        val endTime = System.currentTimeMillis()
-        val totalTime = endTime - startTime
-        println("totalTime: $totalTime")
     }
 }
 
